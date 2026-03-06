@@ -1,0 +1,13 @@
+[project]
+name = "ml-agents-project"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "coverage>=7.13.4",
+    "langchain-community>=0.4.1",
+    "langchain-ollama>=1.0.1",
+    "langgraph>=1.0.10",
+    "pytest>=9.0.2",
+]
