@@ -1,0 +1,7 @@
+langchain
+langchain-ollama
+langchain-openai
+pandas
+pyarrow
+fastparquet
+psutil

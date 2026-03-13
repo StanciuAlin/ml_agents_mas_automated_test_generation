@@ -1,22 +1,25 @@
-from langchain_ollama import ChatOllama
+from utils import get_coder_agent_openai, get_coder_agent_ollama
 
 
-def get_coder_agent():
-    # Optimized for Mac M4: temperature 0 for precision in code
-    # The model "qwen2.5-coder:7b" is designed for coding tasks, providing better code generation capabilities.
-    return ChatOllama(
-        model="qwen2.5-coder:7b",
-        temperature=0
-    )
+def get_coder_agent(api_choice="openai"):
+    if api_choice == "ollama":
+        return get_coder_agent_ollama()
+    else:
+        return get_coder_agent_openai()
 
 
 def generate_test_code(source_code: str):
-    llm = get_coder_agent()
+    # Change to "ollama" if you want to use Ollama
+    llm = get_coder_agent(api_choice="openai")
+
     prompt = (
         "You are an expert Python QA Engineer. "
-        "Write a pytest suite for the following code. "
-        "Return ONLY the python code, no explanations.\n\n"
+        "Analyze the code for logic errors, dead code, or potential crashes. "
+        "Write a pytest suite that covers all reachable branches and explicitly "
+        "tests for identified edge cases and bugs. Be sure that all text "
+        "that is generated and is not a valid Python code is commented out.\n\n"
         f"CODE:\n{source_code}"
     )
+
     response = llm.invoke(prompt)
     return response.content

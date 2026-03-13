@@ -1,20 +1,24 @@
 from agent_logic import generate_test_code
+from utils import get_system_specs, read_code_content
 
 
-def run_experiment():
-    # An example function to test - in a real scenario, this would be your actual codebase
-    code_to_test = """
-        def calculate_discount(price, discount_percent):
-            if not 0 <= discount_percent <= 100:
-                raise ValueError("Invalid discount")
-            return price * (1 - discount_percent / 100)
-    """
+def automate_test_generation():
 
-    print("Generating tests locally on M4...")
+    target_file = "logic_to_test_deadcode.py"
+    code_to_test = read_code_content(target_file)
+    if not code_to_test:
+        return
+
+    specs = get_system_specs()
+    print(f"Hardware detected: {specs['cpu']} with {specs['ram']} RAM")
+
     test_result = generate_test_code(code_to_test)
 
     print("\n--- GENERATED TEST ---")
     print(test_result)
+
+    # Clean up code block markers if present
+    test_result = test_result.strip("```python").strip("```")
 
     # Save to a temporary file for syntax checking
     with open("generated_test_output.py", "w") as f:
@@ -23,4 +27,4 @@ def run_experiment():
 
 
 if __name__ == "__main__":
-    run_experiment()
+    automate_test_generation()
