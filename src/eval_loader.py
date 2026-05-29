@@ -14,18 +14,18 @@ def inspect_parquet_data(file_path):
 
         print("✅ Fișier încărcat cu succes!")
         print("-" * 30)
-        print(f"📊 Număr total de rânduri (eșantioane): {len(df)}")
-        print(f"📋 Coloane disponibile: {df.columns.tolist()}")
+        print(f"Număr total de rânduri (eșantioane): {len(df)}")
+        print(f"Coloane disponibile: {df.columns.tolist()}")
         print("-" * 30)
 
         # Afișăm primele 2 rânduri pentru a vedea structura
-        print("\n🔍 Exemplu de date (primele 2 rânduri):")
+        print("\nExemplu de date (primele 2 rânduri):")
         # De obicei, coloanele importante sunt 'prompt', 'reference_code' sau 'entry_point'
         print(df.head(2))
 
         # Dacă vrei să vezi codul sursă al primei funcții:
         if 'prompt' in df.columns:
-            print("\n💻 Codul sursă al primului eșantion:")
+            print("\nCodul sursă al primului eșantion:")
             print(df['prompt'].iloc[0])
 
     except Exception as e:

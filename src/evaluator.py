@@ -35,7 +35,7 @@ def run_evaluation(num_samples=1):
         # DEFINIM NUMELE MODULULUI AICI (înainte de utilizare)
         source_module_name = f"src_{task_id}"
 
-        print(f"\n🚀 [{i+1}/{num_samples}] Task: {task_id}")
+        print(f"\n[{i+1}/{num_samples}] Task: {task_id}")
         task_start = time.time()
 
         # 1. Salvăm codul sursă
@@ -76,7 +76,7 @@ def run_evaluation(num_samples=1):
             print(f"❌ Eroare la procesarea task-ului {task_id}: {e}")
 
     total_duration = time.time() - total_start
-    print(f"\n🏁 GATA! Timp total: {total_duration:.2f}s")
+    print(f"\nGATA! Timp total: {total_duration:.2f}s")
 
 
 if __name__ == "__main__":
